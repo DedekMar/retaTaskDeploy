@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    </head>
+    <body>
+        {% include "header.html" %}
+        <div class="page-wrapper">
+            <div class = "row justify-content-center align-items-center">
+                <div class="col-6">
+                    <h1>Výpis položek s náhradními díly</h1>
+                        <ul>
+                            {% for item in items_with_spares %}
+                                <li class = "mt-2"><p>Náhradní díly pro <strong>{{ item.code }}</strong> {{ item.name }} :</p>
+                                    <span></span>
+                                    {% for spare in item.category_parts %}
+                                        <ul>
+                                            <li><strong>{{ spare.code }}</strong> {{ spare.name }}</li>
+                                        </ul>
+                                    {% endfor %}
+                                </li>                                
+                            {% endfor %}
+                        </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

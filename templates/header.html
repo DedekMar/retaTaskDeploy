@@ -1,0 +1,11 @@
+<div>
+    <nav class="navbar navbar-light navbar-expand-md navbar-dark bg-dark justify-content-center">
+        <a class="navbar-brand" href="#">Aplikace</a>
+        <ul class="navbar-nav mr-auto">
+            <li><a href="{{ url_for('index') }}" class="nav-link">Seznam úkolů</a></li>
+            <li><a href="{{ url_for('show_item_count') }}" class="nav-link">Počet položek</a></li>
+            <li><a href="{{ url_for('show_item_list') }}" class="nav-link">Seznam položek - jedna stránka</a></li>
+            <li><a href="{{ url_for('show_item_spares') }}" class="nav-link">Položky s náhradními díly</a></li>
+        </ul>
+    </nav>
+</div>
