@@ -4,6 +4,7 @@ import argparse
 from waitress import serve
 import logging
 from loader import download_and_extract_zip
+import os
 
 # simple flask app that uses the DataProcessor class to route the requsts and pass results to the templates
 
@@ -46,8 +47,12 @@ if __name__ == '__main__':
     parser.add_argument("-fp", default = "./xml_data/export_full.xml", help="Path to the xml file")  
     args = parser.parse_args()  
     file_path = args.fp
+
+    # hardcore url for this deploy
     url = "https://www.retailys.cz/wp-content/uploads/astra_export_xml.zip"
-    success = download_and_extract_zip(url, file_path)
+    dir_path = os.path.dirname(file_path)
+
+    success = download_and_extract_zip(url, dir_path)
     if success:
         data_processor = DataProcessor(file_path= file_path)
         serve(app, host='0.0.0.0', port=5000)
