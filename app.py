@@ -44,10 +44,16 @@ def show_item_spares():
 if __name__ == '__main__':
     # Add command-line argument for  target directory
     parser = argparse.ArgumentParser(description="Specify the path of the xml file and launch the web Flask app")
-    parser.add_argument("-fp", default = "./export_full.xml", help="Path to the xml file")  
+    parser.add_argument("-fp", default = "./xml_data/export_full.xml", help="Path to the xml file")  
     args = parser.parse_args()  
     file_path = args.fp
 
-    data_processor = DataProcessor(file_path= file_path)
-    serve(app, host='0.0.0.0', port=5000)
+    # hardcore url for this deploy
+    url = "https://www.retailys.cz/wp-content/uploads/astra_export_xml.zip"
+    dir_path = os.path.dirname(file_path)
+
+    success = download_and_extract_zip(url, dir_path)
+    if success:
+        data_processor = DataProcessor(file_path= file_path)
+        serve(app, host='0.0.0.0', port=5000)
     #app.run(host="0.0.0.0")
