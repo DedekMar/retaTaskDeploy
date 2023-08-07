@@ -47,8 +47,8 @@ if __name__ == '__main__':
     args = parser.parse_args()  
     file_path = args.fp
     url = "https://www.retailys.cz/wp-content/uploads/astra_export_xml.zip"
-    download_and_extract_zip(url, file_path)
-
-    data_processor = DataProcessor(file_path= file_path)
-    serve(app, host='0.0.0.0', port=5000)
+    success = download_and_extract_zip(url, file_path)
+    if success:
+        data_processor = DataProcessor(file_path= file_path)
+        serve(app, host='0.0.0.0', port=5000)
     #app.run(host="0.0.0.0")
